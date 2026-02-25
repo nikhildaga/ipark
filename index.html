@@ -5,403 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iPark – Smarter Parking Starts Here</title>
-    <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-            scroll-behavior: smooth;
-            /* For smooth scrolling on internal links */
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
-
-        /* Header & Navigation */
-        header {
-            background-color: #2c3e50;
-            color: #fff;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        nav ul li a:hover,
-        nav ul li a.active {
-            background-color: #3498db;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-            color: #fff;
-            padding: 80px 0;
-            text-align: center;
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero h2 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: #e67e22;
-            color: #fff;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .cta-button:hover {
-            background-color: #d35400;
-            transform: translateY(-2px);
-        }
-
-        /* Section Styling */
-        section {
-            padding: 60px 0;
-        }
-
-        section:nth-child(even) {
-            background-color: #fff;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            color: #2c3e50;
-            margin-bottom: 40px;
-            font-weight: 600;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: #3498db;
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        /* About Us Section */
-        #about .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        #about .about-item {
-            flex: 1;
-            min-width: 280px;
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid #3498db;
-        }
-
-        #about .about-item h3 {
-            font-size: 1.5rem;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        /* Solutions Section */
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .solution-card {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .solution-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .solution-card h3 {
-            font-size: 1.4rem;
-            color: #3498db;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .solution-card h3::before {
-            /* Simple icon placeholder */
-            content: '✓';
-            /* Unicode checkmark */
-            margin-right: 10px;
-            color: #2ecc71;
-            font-weight: bold;
-        }
-
-        /* Why Choose Us Section */
-        #why-choose-us ul {
-            list-style: none;
-            padding-left: 0;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        #why-choose-us li {
-            background-color: #eaf6ff;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            border-left: 4px solid #3498db;
-        }
-
-        #why-choose-us li::before {
-            /* Simple icon placeholder */
-            content: '⭐';
-            /* Unicode star */
-            margin-right: 15px;
-            font-size: 1.2rem;
-            color: #f1c40f;
-        }
-
-        /* Contact Us Section */
-        #contact {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-        }
-
-        #contact .section-title {
-            color: #fff;
-        }
-
-        #contact .section-title::after {
-            background-color: #e67e22;
-        }
-
-        #contact p {
-            text-align: center;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        #contact .contact-details {
-            text-align: center;
-            font-size: 1.1rem;
-        }
-
-        #contact .contact-details a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        #contact .contact-details a:hover {
-            text-decoration: underline;
-        }
-
-
-        /* Footer */
-        footer {
-            background-color: #1f2b38;
-            color: #bdc3c7;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header .container {
-                flex-direction: column;
-            }
-
-            nav ul {
-                margin-top: 10px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            nav ul li {
-                margin: 5px;
-            }
-
-            .hero h2 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .solutions-grid {
-                grid-template-columns: 1fr;
-                /* Stack cards on smaller screens */
-            }
-        }
-
-        /* FAQ Section */
-        #faq .faq-list {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background-color: #fff;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eee;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            padding: 15px 20px;
-            cursor: pointer;
-            background-color: #f8f9fa;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: #2c3e50;
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-
-        .faq-question:hover {
-            background-color: #e9ecef;
-        }
-
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: #3498db;
-            line-height: 1;
-            font-weight: 400;
-        }
-
-        .faq-item.active .faq-question {
-            background-color: #e9ecef;
-            color: #3498db;
-        }
-
-        .faq-item.active .faq-question::after {
-            content: '\2212';
-            /* Minus sign */
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background-color: #fff;
-        }
-
-        .faq-answer-content {
-            padding: 20px;
-            color: #555;
-            line-height: 1.6;
-            border-top: 1px solid #eee;
-        }
-
-        .faq-answer ul {
-            padding-left: 20px;
-            margin-top: 10px;
-        }
-
-        .faq-answer li {
-            margin-bottom: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
 
-    <header>
+    <header id="header">
         <div class="container">
-            <h1>iPark</h1>
+            <a href="#" class="logo">iPark<span style="color:#3b82f6">.</span></a>
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#about">About</a></li>
                     <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#app-preview">App Preview</a></li>
                     <li><a href="#why-choose-us">Why Us</a></li>
                     <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -409,335 +31,270 @@
 
     <section id="home" class="hero">
         <div class="container">
-            <h2>Welcome to iPark – Smarter Parking Starts Here</h2>
-            <p>At iPark, we are redefining urban mobility with smart, automated parking solutions tailored for modern
-                cities, hotels, commercial complexes, and event venues. Say goodbye to parking chaos—experience seamless
-                valet automation with the power of technology.</p>
-            <a href="#contact" class="cta-button">Request a Demo</a>
+            <h1>Smarter Parking<br><span
+                    style="background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Starts
+                    Here</span></h1>
+            <p>Redefining urban mobility with smart, automated parking solutions tailored for modern cities, hotels,
+                commercial complexes, and event venues. Say goodbye to parking chaos.</p>
+            <a href="#contact" class="btn-primary">Request a Demo <i class="fas fa-arrow-right"
+                    style="margin-left: 8px;"></i></a>
         </div>
     </section>
 
-    <section id="about">
-        <div class="container">
+    <section id="about" class="glass"
+        style="margin: 40px auto; width: 90%; max-width: 1200px; padding: 60px 40px; border-radius: 30px;">
+        <div class="section-header">
+            <span class="section-subtitle">Who We Are</span>
             <h2 class="section-title">About Us</h2>
-            <div class="about-content">
-                <div class="about-item">
-                    <h3>Who We Are</h3>
-                    <p>iPark (ParkoBots Private Limited) is a next-generation technology startup focused on solving
-                        real-world parking problems through automation, robotics, and seamless digital integration. Our
-                        intelligent parking assistant empowers property owners and hospitality businesses to manage
-                        vehicle flow, valet operations, and customer communication efficiently via WhatsApp API and
-                        smart QR codes.</p>
-                </div>
-                <div class="about-item">
-                    <h3>Our Mission</h3>
-                    <p>To revolutionize urban parking by offering secure, space-saving, and fully automated solutions
-                        that enhance user convenience and operational control.</p>
-                </div>
-                <div class="about-item">
-                    <h3>Our Vision</h3>
-                    <p>To become India’s leading provider of valet automation and digital parking management solutions,
-                        expanding across smart cities and hospitality hubs.</p>
-                </div>
+        </div>
+        <div class="grid-3">
+            <div>
+                <h3 style="color:#3b82f6; margin-bottom:15px; font-size:1.4rem;">Our Profile</h3>
+                <p style="color:var(--text-secondary);">iPark (ParkoBots Private Limited) is a next-generation
+                    technology startup focused on solving real-world parking problems through automation, robotics, and
+                    seamless digital integration. We empower businesses to manage vehicle flow efficiently via WhatsApp
+                    API and smart QR codes.</p>
+            </div>
+            <div>
+                <h3 style="color:#8b5cf6; margin-bottom:15px; font-size:1.4rem;">Our Mission</h3>
+                <p style="color:var(--text-secondary);">To revolutionize urban parking by offering secure, space-saving,
+                    and fully automated solutions that enhance user convenience and operational control like never
+                    before.</p>
+            </div>
+            <div>
+                <h3 style="color:#10b981; margin-bottom:15px; font-size:1.4rem;">Our Vision</h3>
+                <p style="color:var(--text-secondary);">To become India’s leading provider of valet automation and
+                    digital parking management solutions, expanding across smart cities and hospitality hubs.</p>
             </div>
         </div>
     </section>
 
     <section id="solutions">
         <div class="container">
-            <h2 class="section-title">Solutions We Offer</h2>
-            <div class="solutions-grid">
-                <div class="solution-card">
-                    <h3>QR-based Valet Automation</h3>
-                    <p>Guests scan a QR, enter vehicle details, and get real-time updates via WhatsApp.</p>
+            <div class="section-header">
+                <span class="section-subtitle">What We Provide</span>
+                <h2 class="section-title">Our Solutions</h2>
+            </div>
+            <div class="grid-3">
+                <div class="card glass">
+                    <i class="fas fa-qrcode card-icon"></i>
+                    <h3>QR-based Valet</h3>
+                    <p>Guests scan a QR, enter vehicle details, and get real-time updates via seamless WhatsApp
+                        integration.</p>
                 </div>
-                <div class="solution-card">
-                    <h3>Staff Input Dashboard</h3>
-                    <p>Hotel or event staff can directly enter vehicle data to initiate valet communication.</p>
+                <div class="card glass">
+                    <i class="fas fa-desktop card-icon"></i>
+                    <h3>Staff Dashboard</h3>
+                    <p>Hotel or event staff can directly enter vehicle data to initiate and monitor real-time valet
+                        communication.</p>
                 </div>
-                <div class="solution-card">
+                <div class="card glass">
+                    <i class="fas fa-calendar-alt card-icon"></i>
                     <h3>Event-based Parking</h3>
-                    <p>Custom parking management for weddings, exhibitions, and large gatherings.</p>
+                    <p>Custom, high-volume parking management optimized for weddings, exhibitions, and large gatherings.
+                    </p>
                 </div>
-                <div class="solution-card">
-                    <h3>WhatsApp Integration</h3>
-                    <p>Real-time notifications, valet tracking, and two-way communication with customers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="app-preview" class="preview-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Experience The Platform</span>
+                <h2 class="section-title">App Preview</h2>
+            </div>
+
+            <div class="platform-tabs">
+                <button class="tab-btn active" onclick="showCarousel('ios')"><i class="fab fa-apple"
+                        style="margin-right:8px;"></i> iOS</button>
+                <button class="tab-btn" onclick="showCarousel('android')"><i class="fab fa-android"
+                        style="margin-right:8px;"></i> Android</button>
+            </div>
+
+            <!-- iOS Carousel -->
+            <div class="carousel-container active" id="carousel-ios">
+                <div class="carousel-wrapper">
+                    <button class="scroll-btn prev" onclick="scrollTrack('track-ios', -1)"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track" id="track-ios">
+                        <div class="screenshot"><img src="images/ios/1.jpeg" alt="iOS 1"></div>
+                        <div class="screenshot"><img src="images/ios/2.jpeg" alt="iOS 2"></div>
+                        <div class="screenshot"><img src="images/ios/3.jpeg" alt="iOS 3"></div>
+                        <div class="screenshot"><img src="images/ios/4.jpeg" alt="iOS 4"></div>
+                    </div>
+                    <button class="scroll-btn next" onclick="scrollTrack('track-ios', 1)"><i
+                            class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Android Carousel -->
+            <div class="carousel-container" id="carousel-android">
+                <div class="carousel-wrapper">
+                    <button class="scroll-btn prev" onclick="scrollTrack('track-android', -1)"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track" id="track-android">
+                        <div class="screenshot"><img src="images/android/1.jpeg" alt="Android 1"></div>
+                        <div class="screenshot"><img src="images/android/2.jpeg" alt="Android 2"></div>
+                        <div class="screenshot"><img src="images/android/3.jpeg" alt="Android 3"></div>
+                        <div class="screenshot"><img src="images/android/4.jpeg" alt="Android 4"></div>
+                        <div class="screenshot"><img src="images/android/5.jpeg" alt="Android 5"></div>
+                    </div>
+                    <button class="scroll-btn next" onclick="scrollTrack('track-android', 1)"><i
+                            class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="why-choose-us">
-        <div class="container">
-            <h2 class="section-title">Why Choose iPark?</h2>
-            <ul>
-                <li>Fast setup and onboarding</li>
-                <li>Affordable pricing for events and businesses</li>
-                <li>Custom branding and guest experience</li>
-                <li>Built by professionals who understand parking operations</li>
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header">
+                <span class="section-subtitle">The Advantage</span>
+                <h2 class="section-title">Why Choose iPark?</h2>
+            </div>
+            <ul class="features-list">
+                <li><i class="fas fa-check-circle"></i> Fast setup and onboarding process</li>
+                <li><i class="fas fa-check-circle"></i> Affordable pricing for events and businesses</li>
+                <li><i class="fas fa-check-circle"></i> Custom branding and elevated guest experience</li>
+                <li><i class="fas fa-check-circle"></i> Built by professionals who understand parking operations deeply
+                </li>
             </ul>
         </div>
     </section>
 
     <section id="faq">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <div class="faq-list">
-                <!-- 1. What is iPark? -->
+        <div class="container faq-container">
+            <div class="section-header">
+                <span class="section-subtitle">Got Questions?</span>
+                <h2 class="section-title">FAQ</h2>
+            </div>
+
+            <div class="glass" style="padding: 20px; border-radius: 20px;">
                 <div class="faq-item">
-                    <div class="faq-question">1. What is iPark?</div>
+                    <div class="faq-question">1. What is iPark? <i class="fas fa-plus faq-icon"></i></div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>iPark is a digital parking management platform designed to simplify vehicle parking
-                                operations for users, valet partners, and property owners through a mobile application.
-                            </p>
+                        <div class="faq-answer-inner">iPark is a digital parking management platform designed to
+                            simplify vehicle parking operations for users, valet partners, and property owners through a
+                            mobile application.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">2. Who can use the iPark app? <i class="fas fa-plus faq-icon"></i></div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Vehicle owners, guests visiting supported locations, authorized
+                            valet staff, and parking administrators. Access is linked to supported parking facilities.
                         </div>
                     </div>
                 </div>
-
-                <!-- 2. Who can use the iPark app? -->
                 <div class="faq-item">
-                    <div class="faq-question">2. Who can use the iPark app?</div>
+                    <div class="faq-question">3. Do I need to create an account? <i class="fas fa-plus faq-icon"></i>
+                    </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>The iPark app can be used by:</p>
-                            <ul>
-                                <li>Vehicle owners and guests using supported parking locations</li>
-                                <li>Authorized valet staff</li>
-                                <li>Parking administrators and partners</li>
-                            </ul>
-                            <p>Access is provided only for approved and supported parking facilities.</p>
-                        </div>
+                        <div class="faq-answer-inner">Yes. Certain features require account creation or logging in to
+                            ensure secure access and accurate parking records.</div>
                     </div>
                 </div>
-
-                <!-- 3. Do I need to create an account to use iPark? -->
                 <div class="faq-item">
-                    <div class="faq-question">3. Do I need to create an account to use iPark?</div>
+                    <div class="faq-question">4. What data does iPark collect? <i class="fas fa-plus faq-icon"></i>
+                    </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Yes. Certain features of the iPark app require users to create an account or log in using
-                                verified credentials to ensure secure access and accurate parking records.</p>
-                        </div>
+                        <div class="faq-answer-inner">We collect only necessary data including name, contact details,
+                            vehicle number, parking timestamps, and diagnostic device information.</div>
                     </div>
                 </div>
-
-                <!-- 4. What data does iPark collect? -->
                 <div class="faq-item">
-                    <div class="faq-question">4. What data does iPark collect?</div>
+                    <div class="faq-question">5. Is my personal data secure? <i class="fas fa-plus faq-icon"></i></div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>iPark collects only the data necessary for core functionality, which may include:</p>
-                            <ul>
-                                <li>Name and contact details</li>
-                                <li>Vehicle number</li>
-                                <li>Parking activity and timestamps</li>
-                                <li>Device information for app performance and security</li>
-                            </ul>
-                            <p>All data collection is governed by our Privacy Policy.</p>
-                        </div>
+                        <div class="faq-answer-inner">Yes. We use industry-standard security protocols, secure servers,
+                            and restricted access controls to ensure your data is safe.</div>
                     </div>
                 </div>
-
-                <!-- 5. How is my data used? -->
                 <div class="faq-item">
-                    <div class="faq-question">5. How is my data used?</div>
+                    <div class="faq-question">6. Does the app use location services? <i
+                            class="fas fa-plus faq-icon"></i></div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>User data is used strictly for:</p>
-                            <ul>
-                                <li>Managing parking operations</li>
-                                <li>Sending parking confirmations and updates</li>
-                                <li>Improving app performance and security</li>
-                            </ul>
-                            <p>iPark does not sell user data to third parties.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 6. Is my personal data secure? -->
-                <div class="faq-item">
-                    <div class="faq-question">6. Is my personal data secure?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Yes. iPark uses industry-standard security measures to protect user data, including
-                                secure servers and restricted access controls.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 7. Does iPark share data with third parties? -->
-                <div class="faq-item">
-                    <div class="faq-question">7. Does iPark share data with third parties?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Data is shared only with:</p>
-                            <ul>
-                                <li>Authorized parking partners</li>
-                                <li>Service providers required for app functionality (such as messaging or hosting
-                                    services)</li>
-                            </ul>
-                            <p>All partners are bound by confidentiality and data protection agreements.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 8. Does the iPark app use location services? -->
-                <div class="faq-item">
-                    <div class="faq-question">8. Does the iPark app use location services?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Location services may be used only when required to enable parking-related features.
-                                Location access is always subject to user permission and device settings.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 9. Does iPark send notifications? -->
-                <div class="faq-item">
-                    <div class="faq-question">9. Does iPark send notifications?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Yes. iPark may send:</p>
-                            <ul>
-                                <li>Parking confirmation messages</li>
-                                <li>Status updates</li>
-                                <li>Service-related notifications</li>
-                            </ul>
-                            <p>Users can manage notification preferences from their device settings.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 10. Is iPark free to use? -->
-                <div class="faq-item">
-                    <div class="faq-question">10. Is iPark free to use?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>The iPark app is free to download. Certain services may involve parking or service fees
-                                as defined by the parking facility or partner.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 11. Does iPark support in-app payments? -->
-                <div class="faq-item">
-                    <div class="faq-question">11. Does iPark support in-app payments?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Payment features, if enabled, are processed securely through authorized payment gateways
-                                and comply with applicable regulations.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 12. Can I delete my account and data? -->
-                <div class="faq-item">
-                    <div class="faq-question">12. Can I delete my account and data?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Yes. Users may request account deletion and data removal by contacting us at the support
-                                details provided below, in accordance with applicable laws.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 13. How can I contact iPark support? -->
-                <div class="faq-item">
-                    <div class="faq-question">13. How can I contact iPark support?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>You can reach us at:</p>
-                            <ul>
-                                <li>Email: </li>
-                                <li>Phone: </li>
-                            </ul>
-                            <p>Support is available during standard business hours.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 14. Is iPark compliant with Apple App Store policies? -->
-                <div class="faq-item">
-                    <div class="faq-question">14. Is iPark compliant with Apple App Store policies?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Yes. iPark follows Apple App Store Review Guidelines, including data privacy, security,
-                                and user transparency requirements.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 15. Where can I read the Privacy Policy and Terms? -->
-                <div class="faq-item">
-                    <div class="faq-question">15. Where can I read the Privacy Policy and Terms?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <ul>
-                                <li>Privacy Policy: <a href="privacy.html" target="_blank">Read Here</a></li>
-                                <li>Terms of Service: <a href="terms.html" target="_blank">Read Here</a></li>
-                            </ul>
-                        </div>
+                        <div class="faq-answer-inner">Location services may be used to enable specific parking features,
+                            but always operate strictly with user permission and device settings.</div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <section id="contact">
-            <div class="container">
-                <h2 class="section-title">Let’s Transform Parking Together</h2>
-                <p>Ready to upgrade your parking experience?</p>
-                <div class="contact-details">
-                    <p>Phone: +91-9421503171</p>
-                    <p>Location: 74,Samaj Ekta Society, Unnamed Road, Computerise Home Open, Viraj Nagar, Nagpur- 440025
-                    </p>
+    <section id="contact">
+        <div class="container">
+            <div class="glass contact-box" style="padding: 50px;">
+                <h2 class="section-title" style="margin-bottom: 20px;">Transform Parking Today</h2>
+                <p>Ready to upgrade your visitor's parking experience?</p>
+                <div style="margin: 30px 0; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px;">
+                    <p style="margin-bottom: 5px;"><i class="fas fa-phone-alt"
+                            style="color:var(--accent-blue); margin-right: 10px;"></i> <span
+                            class="highlight">+91-9421503171</span></p>
+                    <p><i class="fas fa-map-marker-alt" style="color:var(--accent-purple); margin-right: 10px;"></i>
+                        <span class="highlight">74, Samaj Ekta Society, Viraj Nagar, Nagpur - 440025</span></p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer>
-            <div class="container">
-                <p>&copy;
-                    <script>document.write(new Date().getFullYear())</script> iPark (ParkoBots Private Limited). All
-                    Rights Reserved.
-                </p>
-                <div style="margin-top: 10px; font-size: 0.85rem;">
-                    <a href="privacy.html" style="color: #bdc3c7; text-decoration: none; margin-right: 15px;">Privacy
-                        Policy</a>
-                    <a href="terms.html" style="color: #bdc3c7; text-decoration: none;">Terms of Service</a>
-                </div>
+    <footer>
+        <div class="container">
+            <div class="logo" style="font-size: 1.5rem; margin-bottom: 15px; display: inline-block;">iPark.</div>
+            <p>&copy; <span id="year"></span> ParkoBots Private Limited. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const faqItems = document.querySelectorAll('.faq-item');
+    <script>
+        // Set Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-                faqItems.forEach(item => {
-                    const question = item.querySelector('.faq-question');
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const isActive = item.classList.contains('active');
 
-                    question.addEventListener('click', () => {
-                        // Close other open items (optional, for accordion style)
-                        faqItems.forEach(otherItem => {
-                            if (otherItem !== item && otherItem.classList.contains('active')) {
-                                otherItem.classList.remove('active');
-                                otherItem.querySelector('.faq-answer').style.maxHeight = null;
-                            }
-                        });
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
 
-                        // Toggle current item
-                        item.classList.toggle('active');
-                        const answer = item.querySelector('.faq-answer');
-
-                        if (item.classList.contains('active')) {
-                            answer.style.maxHeight = answer.scrollHeight + "px";
-                        } else {
-                            answer.style.maxHeight = null;
-                        }
-                    });
-                });
+                // Open clicked if it wasn't active
+                if (!isActive) item.classList.add('active');
             });
-        </script>
+        });
+
+        // Tabs Logic
+        function showCarousel(platform) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.carousel-container').forEach(c => c.classList.remove('active'));
+
+            event.currentTarget.classList.add('active');
+            document.getElementById(`carousel-${platform}`).classList.add('active');
+        }
+
+        // Horizontal Scroll
+        function scrollTrack(trackId, direction) {
+            const track = document.getElementById(trackId);
+            const scrollAmount = 350; // Approximates card width + gap
+            track.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+        }
+
+        // Header Background on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(2, 6, 23, 0.9)';
+                header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
+            } else {
+                header.style.background = 'rgba(2, 6, 23, 0.7)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
 </body>
 
 </html>
